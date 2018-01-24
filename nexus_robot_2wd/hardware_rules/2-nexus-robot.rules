@@ -1,0 +1,1 @@
+KERNEL=="ttyACM[0-9]*", SUBSYSTEM=="tty", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{serial}=="7563830323735171A1C1", SYMLINK+="arduino_2wd"

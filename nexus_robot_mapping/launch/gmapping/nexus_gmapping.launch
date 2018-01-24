@@ -1,0 +1,17 @@
+<launch>
+     <arg name="scan_topic" default="/scan" />
+
+   <!-- Defining parameters for slam_gmapping node -->
+
+     <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping"
+     output="screen">
+
+       <rosparam file="$(find nexus_robot_mapping)/params/gmapping_params.yaml" command="load" />
+
+       <remap from="scan" to="$(arg scan_topic)"/>
+
+     </node>
+
+     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find nexus_robot_2wd)/rviz/slam_rviz.rviz"/>
+
+</launch>

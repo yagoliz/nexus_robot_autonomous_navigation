@@ -1,0 +1,43 @@
+<launch>
+  <!--Launch Lidar-->
+  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+
+  <!--Launch Joystick-->
+  <include file="$(find minion_teleop)/launch/logitech.launch"/>
+
+  <!--Launch cmd_vel transformation-->
+  <node pkg="minion_teleop" type="cmd2vec3" name="cmd2vec3" output="screen"/>
+
+  <!--Launch Arduino-->
+  <node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen">
+    <param name="port" value="/dev/arduino_2wd"/>
+    <param name="baud" value="57600"/>
+  </node>
+
+  <!--Launch Odometry publisher and transform-->
+  <node pkg="nexus_robot_2wd" type="nexus_robot" name="nexus_robot" output="screen"/>
+
+  <!--Launch Transforms-->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0.029 0 0 0 1 /map /odom" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="Lidar_scan_broadcaster" args="0.0 0 0.055 0 0 0 1 /base_footprint /laser" />
+
+  <!--Launch amcl node-->
+  <include file="$(find nexus_robot_2wd)/launch/amcl/amcl_launch.launch"/>
+
+  <!--Launch move base node-->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find nexus_robot_2wd)/config/move_base_params.yaml" command="load" />
+    <rosparam file="$(find nexus_robot_2wd)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find nexus_robot_2wd)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find nexus_robot_2wd)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find nexus_robot_2wd)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find nexus_robot_2wd)/config/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find nexus_robot_2wd)/config/global_planner_params.yaml" command="load" />
+
+    <param name="base_global_planner" value="navfn/NavfnROS" />
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+    <param name="controller_frequency" value="5.0" />
+    <param name="controller_patience" value="15.0" />
+  </node>
+
+</launch>

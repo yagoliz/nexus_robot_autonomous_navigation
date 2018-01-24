@@ -1,0 +1,31 @@
+<launch>
+
+  <!--Launch Lidar-->
+  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+
+  <!--Launch keyboard-->
+  <include file="$(find minion_teleop)/launch/keyboard_teleop.launch"/>
+
+  <!--Launch cmd_vel transformation-->
+  <node pkg="minion_teleop" type="cmd2vec3" name="cmd2vec3" output="screen"/>
+
+  <!--Launch Arduino-->
+  <node pkg="rosserial_python" type="serial_node.py" name="serial_node" output="screen">
+    <param name="port" value="/dev/arduino_2wd"/>
+    <param name="baud" value="57600"/>
+  </node>
+
+  <!--Launch Odometry publisher and transform-->
+  <node pkg="nexus_robot_2wd" type="nexus_robot" name="nexus_robot" output="screen">
+      <param name="rate" value="100.0"/>
+      <param name="angular_scale_positive" value="2.0"/>
+      <param name="angular_scale_negative" value="2.0"/>
+  </node>
+
+  <!--Launch Transforms-->
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0.029 0 0 0 1 /map /odom" /> -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="Lidar_scan_broadcaster" args="0.0 0 0.055 1 0 0 0 /base_footprint /laser" />
+
+  <!---Launch gmapping--->
+  <include file="$(find nexus_robot_2wd)/launch/gmapping/nexus_gmapping.launch"/>
+</launch>

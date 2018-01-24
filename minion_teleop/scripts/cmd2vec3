@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+import rospy
+import math
+from geometry_msgs.msg import Vector3, Twist
+
+wheel_diameter = 0.146
+wheel_separation = 0.279
+
+def Vel_Cb(msg):
+    global rps_obj
+
+    linear  = 0.5*msg.linear.x
+    angular = 0.5*msg.angular.z
+
+    speedLeft  = linear - angular*wheel_separation/2
+    speedRight = linear + angular*wheel_separation/2
+
+    rps_obj.x = speedLeft/(wheel_diameter*math.pi)
+    rps_obj.y = speedRight/(wheel_diameter*math.pi)
+
+rospy.init_node('cmd2vec3_transform')
+pub = rospy.Publisher('rps', Vector3, queue_size=5)
+sub = rospy.Subscriber('cmd_vel', Twist, Vel_Cb)
+rps_obj = Vector3()
+
+rate = rospy.Rate(100)
+while not rospy.is_shutdown():
+    pub.publish(rps_obj)
+    rate.sleep()
+
+rospy.spin()
