@@ -1,7 +1,8 @@
 <launch>
 
   <!--Launch Lidar-->
-  <!-- <include file="$(find rplidar_ros)/launch/rplidar.launch"/> -->
+  <arg name="_ip_address" default="192.168.0.10"/>
+  <node pkg="urg_node" type="urg_node" name="hokuyo_lidar" args="_ip_address:=$(arg _ip_address)"/>
 
   <!--Launch Joystick-->
   <include file="$(find minion_teleop)/launch/logitech.launch"/>
