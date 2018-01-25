@@ -9,6 +9,7 @@
   <arg name="scan_topic" default="scan"/>
   <arg name="map_size" default="1024"/>
 
+
   <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
 
     <!-- Frame names -->

@@ -1,5 +1,8 @@
 <launch>
 
+  <arg name="hector_slam" default="true"/>
+  <arg name="_odom_frame" default="odom"/>
+
   <!--Launch Lidar-->
   <arg name="_ip_address" default="192.168.0.10"/>
   <node pkg="urg_node" type="urg_node" name="hokuyo_lidar" args="_ip_address:=$(arg _ip_address)"/>
@@ -30,6 +33,16 @@
   <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0.029 0 0 0 1 /map /odom" />
   <node pkg="tf2_ros" type="static_transform_publisher" name="Lidar_scan_broadcaster" args="0.0 0 0.1 0 0 0 1 base_footprint laser" />
 
-  <include file="$(find nexus_robot_mapping)/launch/hector/nexus_hector_mapping_odometry.launch"/>
+  <group if="$(arg hector_slam)">
+    <include file="$(find nexus_robot_mapping)/launch/hector/nexus_hector_mapping_odometry.launch">
+      <arg name="odom_frame" value="$(arg _odom_frame)"/>
+    </include>
+  </group>
+
+  <group unless="$(arg hector_slam)">
+    <include file="$(find nexus_robot_mapping)/launch/gmapping/nexus_gmapping.launch">
+      <arg name="odom_frame" value="$(arg _odom_frame)"/>
+    </include>
+  </group>
 
 </launch>
