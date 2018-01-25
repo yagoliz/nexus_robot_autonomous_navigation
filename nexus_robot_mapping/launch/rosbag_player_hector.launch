@@ -33,4 +33,6 @@
   <!-- Launch hector_slam -->
   <include file="$(find nexus_robot_mapping)/launch/hector/nexus_hector_mapping_no_odometry.launch"/>
 
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find nexus_robot_2wd)/rviz/slam_rviz.rviz"/>
+
 </launch>

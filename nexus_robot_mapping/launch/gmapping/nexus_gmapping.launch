@@ -12,6 +12,6 @@
 
      </node>
 
-     <node pkg="rviz" type="rviz" name="rviz" args="-d $(find nexus_robot_2wd)/rviz/slam_rviz.rviz"/>
+     <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find nexus_robot_2wd)/rviz/slam_rviz.rviz"/> -->
 
 </launch>

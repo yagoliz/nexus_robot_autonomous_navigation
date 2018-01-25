@@ -31,6 +31,8 @@
   <include file="$(find nexus_robot_mapping)/launch/gmapping/nexus_gmapping.launch"/>
 
   <!-- Launch hector_slam -->
-  <!-- <include file="$(find nexus_robot_2wd)/launch/hector/nexus_hector_mapping_odometry.launch"/> -->
+  <include file="$(find nexus_robot_2wd)/launch/hector/nexus_hector_mapping_odometry.launch"/>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find nexus_robot_2wd)/rviz/slam_rviz.rviz"/>
 
 </launch>
