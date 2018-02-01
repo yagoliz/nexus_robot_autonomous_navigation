@@ -33,8 +33,8 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES nexus_robot_2wd
-  # CATKIN_DEPENDS roscpp rospy message_runtime
-#  DEPENDS system_lib
+  CATKIN_DEPENDS roscpp rospy message_runtime geometry_msgs nav_msgs std_msgs tf sensor_msgs tf2 tf2_ros nexus_robot_msgs
+  DEPENDS
 )
 
 ###########
@@ -52,14 +52,10 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across pac
-add_executable(nexus_robot src/nexus_robot_odom.cpp)
 add_executable(nexus_robot_odometry src/nexus_odometry.cpp)
 add_executable(nexus_robot_odometry_2 src/nexus_odometry_v2.cpp)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(nexus_robot
-  ${catkin_LIBRARIES}
-)
 
 target_link_libraries(nexus_robot_odometry
   ${catkin_LIBRARIES}
@@ -67,4 +63,14 @@ target_link_libraries(nexus_robot_odometry
 
 target_link_libraries(nexus_robot_odometry_2
   ${catkin_LIBRARIES}
+)
+
+#############
+## Install ##
+#############
+
+## Mark executable scripts (Python etc.) for installation
+install(PROGRAMS
+  scripts/odom2path
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
