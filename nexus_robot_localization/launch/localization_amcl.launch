@@ -1,6 +1,7 @@
 <launch>
   <!--Launch Lidar-->
-  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+  <arg name="_ip_address" default="192.168.0.10"/>
+  <node pkg="urg_node" type="urg_node" name="hokuyo_lidar" args="_ip_address:=$(arg _ip_address)"/>
 
   <!--Launch Joystick-->
   <include file="$(find minion_teleop)/launch/logitech.launch"/>
@@ -22,17 +23,17 @@
   <node pkg="tf2_ros" type="static_transform_publisher" name="Lidar_scan_broadcaster" args="0.0 0 0.055 0 0 0 1 /base_footprint /laser" />
 
   <!--Launch amcl node-->
-  <include file="$(find nexus_robot_2wd)/launch/amcl/amcl_launch.launch"/>
+  <include file="$(find nexus_robot_localization)/launch/amcl/amcl_launch.launch"/>
 
   <!--Launch move base node-->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find nexus_robot_2wd)/config/move_base_params.yaml" command="load" />
-    <rosparam file="$(find nexus_robot_2wd)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find nexus_robot_2wd)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find nexus_robot_2wd)/config/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find nexus_robot_2wd)/config/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find nexus_robot_2wd)/config/dwa_local_planner_params.yaml" command="load" />
-    <rosparam file="$(find nexus_robot_2wd)/config/global_planner_params.yaml" command="load" />
+    <rosparam file="$(find nexus_robot_localization)/config/move_base_params.yaml" command="load" />
+    <rosparam file="$(find nexus_robot_localization)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find nexus_robot_localization)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find nexus_robot_localization)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find nexus_robot_localization)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find nexus_robot_localization)/config/dwa_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find nexus_robot_localization)/config/global_planner_params.yaml" command="load" />
 
     <param name="base_global_planner" value="navfn/NavfnROS" />
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />

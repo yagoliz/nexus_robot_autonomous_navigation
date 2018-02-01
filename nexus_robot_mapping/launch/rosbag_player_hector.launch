@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="bag" value="$(find nexus_robot_2wd)/rosbags/media_lab_13.bag"/>
+  <arg name="bag" value="$(find nexus_robot_2wd)/rosbags/city_science_13.bag"/>
   <arg name="rate" default="1.0"/>
   <arg name="start" default="0.0"/>
   <param name="use_sim_time" value="true"/>
