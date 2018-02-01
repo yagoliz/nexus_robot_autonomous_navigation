@@ -29,6 +29,8 @@
     <param name="linear_scale_negative" value="1.0"/>
   </node>
 
+  <node pkg="nexus_robot_2wd" type="odom2path.py" name="path" output="screen"/>
+
   <!--Launch Transforms-->
   <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0.029 0 0 0 1 /map /odom" />
   <node pkg="tf2_ros" type="static_transform_publisher" name="Lidar_scan_broadcaster" args="0.0 0 0.1 0 0 0 1 base_footprint laser" />
