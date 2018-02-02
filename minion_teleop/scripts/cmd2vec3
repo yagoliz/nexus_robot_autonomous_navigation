@@ -10,7 +10,7 @@ wheel_separation = 0.279
 def Vel_Cb(msg):
     global rps_obj
 
-    linear  = 0.75msg.linear.x
+    linear  = 0.75*msg.linear.x
     angular = 0.5*msg.angular.z
 
     speedLeft  = linear - angular*wheel_separation/2
