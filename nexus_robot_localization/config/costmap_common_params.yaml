@@ -4,6 +4,7 @@ raytrace_range: 3.0
 footprint: [[0.35, -0.3], [0.35, 0.3], [-0.35,0.3], [-0.35, -0.3]]
 
 publish_frequency: 1.0
+track_unknown_space: true
 
 inflation_layer:
   inflation_radius: 0.05
@@ -11,3 +12,8 @@ inflation_layer:
 obstacle_layer:
   observation_sources: hokuyo_laser
   hokuyo_laser: {sensor_frame: laser, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+# 
+# plugins:
+#   - {name: static_map,       type: "costmap_2d::StaticLayer"}
+#   - {name: obstacle_layer,        type: "costmap_2d::VoxelLayer"}
+#   - {name: inflation_layer,     type: "costmap_2d::InflationLayer"}
