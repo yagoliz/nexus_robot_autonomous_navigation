@@ -54,8 +54,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 0.100000001
-        Min Value: 0.100000001
+        Max Value: 0.128999993
+        Min Value: 0.128999993
         Value: true
       Axis: Z
       Channel Name: intensities
@@ -104,6 +104,8 @@ Visualization Manager:
           Value: true
         odom:
           Value: true
+        scanmatcher_frame:
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
@@ -115,6 +117,8 @@ Visualization Manager:
             base_footprint:
               laser:
                 {}
+          scanmatcher_frame:
+            {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -137,7 +141,7 @@ Visualization Manager:
       Radius: 0.0299999993
       Shaft Diameter: 0.100000001
       Shaft Length: 0.100000001
-      Topic: /path
+      Topic: /trajectory
       Unreliable: false
       Value: true
   Enabled: true
@@ -165,7 +169,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 12.510067
+      Distance: 13.2214918
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
