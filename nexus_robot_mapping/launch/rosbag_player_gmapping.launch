@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="bag" value="/home/yago/rosbags/city_science_16.bag"/>
+  <arg name="bag" value="/home/yago/rosbags/media_lab_01.bag"/>
   <arg name="rate" default="1.0"/>
   <arg name="start" default="0.0"/>
   <param name="use_sim_time" value="true"/>
@@ -10,7 +10,7 @@
   <!--Launch Odometry publisher and transform-->
   <node pkg="nexus_robot_2wd" type="nexus_robot_odometry_2" name="nexus_robot" output="screen">
     <param name="publish_rate" value="50.0"/>
-    <param name="angle_interpolation" value="1.0"/>
+    <param name="angle_interpolation" value="2.0"/>
     <param name="angular_scale_positive" value="1.0"/>
     <param name="angular_scale_negative" value="1.0"/>
     <param name="linear_scale_positive" value="1.0"/>
@@ -20,6 +20,7 @@
   <!-- <node pkg="nexus_robot_2wd" type="odom2path.py" name="path" output="screen"/> -->
   <node pkg="hector_trajectory_server" type="hector_trajectory_server" name="trajectory_server" output="screen">
     <param name="source_frame_name" value="base_footprint"/>
+    <param name="trajectory_publish_rate" value="2.0"/>
   </node>
 
   <!--Launch Transforms-->
