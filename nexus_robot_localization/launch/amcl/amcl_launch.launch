@@ -1,7 +1,7 @@
 <launch>
 
   <!-- Run the map server -->
-  <arg name="map_file" default="$(find nexus_robot_2wd)/maps/Media_Lab/media_lab_hector_01.yaml"/>
+  <arg name="map_file" default="$(find nexus_robot_2wd)/maps/Media_Lab/media_lab_hector_04.yaml"/>
   <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"/>
 
   <!-- Publish scans from best pose at a max of 10 Hz -->
