@@ -13,7 +13,6 @@
   </node>
 
   <!--Launch Odometry publisher and transform-->
-  <!--Launch Odometry publisher and transform-->
   <node pkg="nexus_robot_2wd" type="nexus_robot_odometry_2" name="nexus_robot_odometry" output="screen">
     <param name="publish_rate" value="50.0"/>
     <param name="angle_interpolation" value="2.0"/>
