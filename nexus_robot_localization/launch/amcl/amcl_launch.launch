@@ -1,7 +1,7 @@
 <launch>
 
   <!-- Run the map server -->
-  <arg name="map_file" default="$(find nexus_robot_2wd)/maps/Media_Lab/media_lab_hector_04.yaml"/>
+  <arg name="map_file" default="$(find nexus_robot_2wd)/maps/Media_Lab/media_lab_gmapping_01.yaml"/>
   <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)"/>
 
   <!-- Publish scans from best pose at a max of 10 Hz -->
@@ -12,8 +12,8 @@
     <param name="transform_tolerance" value="0.2" />
     <param name="gui_publish_rate" value="10.0"/>
     <param name="laser_max_beams" value="30"/>
-    <param name="min_particles" value="10"/>
-    <param name="max_particles" value="100"/>
+    <param name="min_particles" value="100"/>
+    <param name="max_particles" value="500"/>
     <param name="kld_err" value="0.05"/>
     <param name="kld_z" value="0.99"/>
     <param name="odom_alpha1" value="0.2"/>

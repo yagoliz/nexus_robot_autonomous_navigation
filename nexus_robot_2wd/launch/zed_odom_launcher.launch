@@ -1,0 +1,35 @@
+<launch>
+
+  <arg name="hector_slam" default="true"/>
+  <arg name="_odom_frame" default="odom"/>
+
+  <!--Launch Lidar-->
+  <arg name="_ip_address" default="192.168.0.10"/>
+  <node pkg="urg_node" type="urg_node" name="hokuyo_lidar" args="_ip_address:=$(arg _ip_address)"/>
+
+  <!-- Launch zed camera -->
+  <include file="$(find zed_wrapper)/launch/zed_camera.launch">
+    <arg name="gpu_id" value="0"/>
+    <arg name="publish_urdf" value="true" />
+  </include>
+
+  <!-- <node pkg="nexus_robot_2wd" type="odom2path.py" name="path" output="screen"/> -->
+  <node pkg="hector_trajectory_server" type="hector_trajectory_server" name="trajectory_server" output="screen">
+    <param name="source_frame_name" value="base_footprint"/>
+  </node>
+
+
+  <group if="$(arg hector_slam)">
+    <include file="$(find nexus_robot_mapping)/launch/hector/nexus_hector_mapping_odometry.launch">
+      <arg name="odom_frame" value="$(arg _odom_frame)"/>
+    </include>
+  </group>
+
+  <group unless="$(arg hector_slam)">
+    <include file="$(find nexus_robot_mapping)/launch/gmapping/nexus_gmapping.launch">
+      <arg name="odom_frame" value="$(arg _odom_frame)"/>
+    </include>
+  </group>
+
+
+</launch>
