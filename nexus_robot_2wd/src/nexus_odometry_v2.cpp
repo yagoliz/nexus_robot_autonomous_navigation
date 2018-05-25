@@ -69,7 +69,7 @@ void NexusOdometry2::obtainCount(const geometry_msgs::Vector3Stamped& msg){
     if (Vu < 0) Vu *= linear_scale_negative;
 
     dVx = cos(dtheta/angle_interpolation) * Vu;
-    dVy = sin(dtheta/angle_interpolation) * Vu;
+    dVy = -sin(dtheta/angle_interpolation) * Vu;
 
     x += (cos(theta) * dVx - sin(theta) * dVy)*dt;
     y += (sin(theta) * dVx + cos(theta) * dVy)*dt;

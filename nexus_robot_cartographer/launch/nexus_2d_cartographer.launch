@@ -23,8 +23,8 @@
 
   <node name="cartographer_node" pkg="cartographer_ros"
       type="cartographer_node" args="
-          -configuration_directory $(find cartographer_ros)/configuration_files
-          -configuration_basename backpack_2d_nexus.lua"
+          -configuration_directory $(find nexus_robot_cartographer)/configuration_files
+          -configuration_basename nexus_2d_mapping.lua"
       output="screen">
     <remap from="scan" to="scan" />
   </node>

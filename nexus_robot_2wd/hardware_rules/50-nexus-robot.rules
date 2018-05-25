@@ -1,0 +1,3 @@
+KERNEL=="ttyACM[0-9]*", SUBSYSTEM=="tty", ATTRS{idProduct}=="0042", ATTRS{idVendor}=="2341", ATTRS{serial}=="7563830323735171A1C1", SYMLINK+="arduino_2wd", MODE="0666"
+
+KERNEL=="ttyACM[0-9]*", ACTION=="add", ATTRS{idVendor}=="15d1", MODE="0666", GROUP="dialout", PROGRAM="/bin/sh -c '$(find /opt/ros -name env.sh | sort -r | head -1) rosrun urg_node getID /dev/ttyACM0 q'", SYMLINK+="hokuyo_front"

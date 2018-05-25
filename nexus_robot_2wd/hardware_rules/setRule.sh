@@ -1,3 +1,2 @@
-sudo cp 2-nexus-robot.rules /etc/udev/rules.d/
-sudo udevadm control --reload-rules
-sudo udevadm trigger
+sudo cp 50-nexus-robot.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm trigger
