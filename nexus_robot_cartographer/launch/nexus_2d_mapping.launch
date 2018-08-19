@@ -17,7 +17,7 @@
 <launch>
   <param name="/use_sim_time" value="true" />
   <arg name="start" default="0.0"/>
-  <arg name="bag_filename" value="/home/yago/bags/nexus_bag/media_lab_02.bag"/>
+  <arg name="bag_filename" value="/home/yago/bags/nexus_bag/media_lab_01.bag"/>
 
   <node pkg="nexus_robot_2wd" type="nexus_robot_odometry_2" name="nexus_robot_odometry" output="screen">
     <param name="publish_rate" value="40.0"/>

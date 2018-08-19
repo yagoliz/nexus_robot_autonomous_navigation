@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/yago/pev_ws/devel/include",
+                "/home/yago/cartographer_ws/install_isolated/include",
+                "/home/yago/catkin_ws/devel/include",
+                "/home/yago/nexus_ws/devel/include",
+                "/opt/ros/kinetic/include",
+                "/home/yago/nexus_ws/src/nexus_robot_autonomous_navigation/nexus_robot_2wd/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}

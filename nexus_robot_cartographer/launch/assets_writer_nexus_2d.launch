@@ -1,0 +1,32 @@
+<!--
+  Copyright 2016 The Cartographer Authors
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<launch>
+
+  <arg name="config_file" default="assets_writer_nexus_2d.lua"/>
+  <arg name="bag_filenames" default="$(env HOME)/bags/nexus_bag/media_lab_01.bag"/>
+  <arg name="pose_graph_filename" default="$(env HOME)/pose_graph/nexus/05-25-2018-media-lab.pbstream"/>
+
+  <node name="cartographer_assets_writer" pkg="cartographer_ros" required="true"
+      type="cartographer_assets_writer" args="
+          -configuration_directory $(find nexus_robot_cartographer)/configuration_files
+          -configuration_basename $(arg config_file)
+          -urdf_filename $(find nexus_robot_cartographer)/urdf/nexus_2d.urdf
+          -bag_filenames $(arg bag_filenames)
+          -pose_graph_filename $(arg pose_graph_filename)"
+      output="screen">
+  </node>
+</launch>

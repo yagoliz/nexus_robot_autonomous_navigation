@@ -1,4 +1,4 @@
--- Copyright 2016 The Cartographer Authors
+-- Copyright 2017 The Cartographer Authors
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -12,9 +12,17 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 
-include "nexus_3d_mapping.lua"
+XY_TRANSFORM =  {
+  translation = { 0., 0., 0. },
+  rotation = { 0., -math.pi / 2., 0., },
+}
 
-TRAJECTORY_BUILDER.pure_localization = true
-POSE_GRAPH.optimize_every_n_nodes = 100
+XZ_TRANSFORM =  {
+  translation = { 0., 0., 0. },
+  rotation = { 0. , 0., -math.pi / 2, },
+}
 
-return options
+YZ_TRANSFORM =  {
+  translation = { 0., 0., 0. },
+  rotation = { 0. , 0., math.pi, },
+}
